@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes animar {
+            from {
+                transform: translateX(-100px);
+            }
+
+            to {
+                transform: translateX(0)
+            }
+        }
+
+        .efecto {
+            animation: animar 5s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Titulo</h1>
+        <img src="" alt="">
+        <p>Parrafo 1</p>
+        <p>Parrafo 2</p>
+        <p>Parrafo 3</p>
+    </div>
+    <ul>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+        <li>Elemento 4</li>
+        <li>Elemento 5</li>
+        <li>Elemento 6</li>
+        <li>Elemento 7</li>
+        <li>Elemento 8</li>
+        <li>Elemento 9</li>
+        <li>Elemento 10</li>
+    </ul>
+    <div id="caja">tttt</div>
+    <div class="efecto">tttttttt</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    //Lo mismo que document.querySelector('div')
+    // $("div p:first-child").hide(500);
+    //Lo mismo que addEventListener
+    // $(document).ready(function () {
+    //     //createElement...
+    //     const miDiv = document.createElement("div");
+    //     miDiv.textContent = "Texto del Div";
+    //     document.body.append(miDiv);
+    // });
+
+    $('div#caja').prepend("<h1>Texto antes</h1>").append("<h2>Texto despues</h2>");
+
+    const miDiv = $("<div>Texto del Div</div>");
+    $("body").append(miDiv);
+
+    $("div").addClass("efecto");
+
+    $("div").removeClass("efecto");
+
+    // $("li").first().hide();
+    // $("li").first().next().hide();
+    // $("li").last().hide();
+    // $("li:nth-child(7)").hide();
+
+    // $("li").eq(2).hide();
+
+    $("li")
+</script>
+
+</html>
