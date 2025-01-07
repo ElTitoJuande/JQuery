@@ -50,11 +50,24 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
+    //$(function(){ }) es lo mismo que (document).ready
+
     $(document).ready(function () {
         $("p").hide();
         $("button").click(function () {
-            $(this).next().show(1000);
+            // $(this).next().show(1000);
+            // $(this).next().toggle(1000);
+
+            let parrafoSig = $(this).next();
+            if (parrafoSig.is(":visible")) {
+                parrafoSig.hide(1000);
+            } else {
+                parrafoSig.show(1000);
+            }
         });
+        $("button:last").mouseenter(function () {
+            $("p").hide();
+        })
     });
 </script>
 
