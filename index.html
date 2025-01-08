@@ -8,23 +8,25 @@
     <style>
         div {
             max-width: 50%;
-            border: solid 1px rgb(156, 38, 38);
+            border: solid 1px rgb(220, 18, 99);
             padding: 10px;
             margin: 10px auto;
             display: flex;
+            align-items: center;
             flex-flow: wrap;
             justify-content: space-between;
 
             p {
-                width: 100%;
+                min-width: 100%;
                 display: none;
             }
 
             button {
-                background-color: rgb(156, 38, 38);
+                background-color: rgb(220, 18, 99);
                 color: white;
                 border: none;
-                padding: 10px;
+                height: 30px;
+                width: 30px;
                 font-size: 1.5rem;
             }
         }
@@ -47,6 +49,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt fuga error reprehenderit esse quas,
             deserunt at sapiente voluptatibus aspernatur itaque.</p>
     </div>
+    
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
@@ -54,20 +57,32 @@
 
     $(document).ready(function () {
         $("p").hide();
-        $("button").click(function () {
-            // $(this).next().show(1000);
-            // $(this).next().toggle(1000);
-
-            let parrafoSig = $(this).next();
-            if (parrafoSig.is(":visible")) {
-                parrafoSig.hide(1000);
+        $("button").on("click", function () {
+            $(this).next().slideToggle(1000);
+            if ($(this).text() == "+") {
+                $(this).text("-");
             } else {
-                parrafoSig.show(1000);
+                $(this).text("+");
             }
+            $(this).parents().siblings().children("p").hide(10000);
+            $(this).parents().siblings().children("button").text("+");
         });
-        $("button:last").mouseenter(function () {
-            $("p").hide();
-        })
+
+        // $("button").click(function () {
+        //     // $(this).next().show(1000);
+        //     // $(this).next().toggle(1000);
+
+        //     let parrafoSig = $(this).next();
+        //     if (parrafoSig.is(":visible")) {
+        //         parrafoSig.hide(1000);
+        //     } else {
+        //         parrafoSig.show(1000);
+        //     }
+        // });
+
+        // $("button:last").mouseenter(function () {
+        //     $("p").hide();
+        // });
     });
 </script>
 

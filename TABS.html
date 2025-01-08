@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui;
+        }
+
+        ul,
+        li {
+            list-style: none;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        div.tabs {
+            max-width: 50%;
+            margin: auto;
+            /* border: solid 1px slateblue; */
+
+            ul {
+                border: solid 1px slateblue;
+                display: flex;
+
+                li {
+                    padding: 20px;
+                    border-right: solid 1px slateblue;
+
+                    &:first-child {
+                        background-color: slateblue;
+                        color: black;
+                    }
+
+                }
+            }
+
+            section {
+                padding: 20px;
+                border: solid 1px slateblue;
+
+                &+section {
+                    display: none;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs">
+        <ul>
+            <li>Pestaña 1</li>
+            <li>Pestaña 2</li>
+            <li>Pestaña 3</li>
+        </ul>
+        <section id="sec1">
+            <h2>Seccion 1</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptatum veniam ut tenetur
+                molestias? Perspiciatis sit veritatis blanditiis deleniti laudantium labore error deserunt rerum ratione
+                est soluta, illum ipsam facere.</p>
+        </section>
+        <section id="sec2">
+            <h2>Seccion 2</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptatum veniam ut tenetur
+                molestias? Perspiciatis sit veritatis blanditiis deleniti laudantium labore error deserunt rerum ratione
+                est soluta, illum ipsam facere.</p>
+        </section>
+        <section id="sec3">
+            <h2>Seccion 3</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptatum veniam ut tenetur
+                molestias? Perspiciatis sit veritatis blanditiis deleniti laudantium labore error deserunt rerum ratione
+                est soluta, illum ipsam facere.</p>
+        </section>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("li").on("click", function () {
+            if ($(this).text() == "Pestaña 1") {
+                $(this).parents().siblings().hide();
+                $(this).parents().siblings("section#sec1").show();
+                $(this).css("background", "rgba(105, 90, 205, 0.5)");
+                $(this).siblings().css("background","transparent");
+            }
+            if ($(this).text() == "Pestaña 2") {
+                $(this).parents().siblings().hide();
+                $(this).parents().siblings("section#sec2").show();
+                $(this).css("background", "rgba(105, 90, 205, 0.5)");
+                $(this).siblings().css("background","transparent");
+            }
+            if ($(this).text() == "Pestaña 3") {
+                $(this).parents().siblings().hide();
+                $(this).parents().siblings("section#sec3").show();
+                $(this).css("background", "rgba(105, 90, 205, 0.5)");
+                $(this).siblings().css("background","transparent");
+            }
+
+        })
+    });
+</script>
+
+</html>
