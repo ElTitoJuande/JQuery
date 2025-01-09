@@ -9,15 +9,57 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-image: url(img/fondotomates.jpeg);
+            background-position: center;
+            background-size: cover;
+        }
+
+        #texto {
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .subtitulo {
+            display: flex;
+            min-width: 200px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: solid 1px black;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 25px;
         }
 
         #container {
-            position: relative;
-            margin: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10%;
+            max-width: 300px;
+            margin: 0;
             padding: 100px;
-            border: solid 1px black;
-            background-color: pink;
+            border: 2px solid #786C3B;
+            border-radius: 60%;
+            box-shadow: 0px 0px 40px rgba(0, 0, 0, 1);
+            background: #964B00;
+            background-image: linear-gradient(to bottom, #964B00, #786C3B);
             overflow: hidden;
+
         }
 
         .circulo {
@@ -25,63 +67,74 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: tomato;
+            background-image: url('img/tomate.jpeg');
+            background-size: cover;
+            background-position: center;
             cursor: pointer;
+            transition: top 0.1s ease, left 0.1s ease;
         }
     </style>
 </head>
 
 <body>
-    <h2 class="temporizador">10 segundos</h2>
-    <h2 class="puntuacion">Puntuación: <span>0</span></h2>
+    <div id="texto">
+        <h1>¡Atrapa el tomate!</h1>
+        <div class="subtitulo">
+            <h2 class="puntuacion">Puntuación: <span>0</span></h2>
+            <h2 class="temporizador">10 segundos</h2>
+        </div>
+    </div>
     <div id="container">
         <div class="circulo"></div>
     </div>
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
 
-    $(function () {
-        var container = $('#container');
-        var containerWidth = container.innerWidth();
-        var containerHeight = container.innerHeight();
-        var circuloWidth = 50;
-        var circuloHeight = 50;
-        var tiempo = 10;
-        var puntuacion = 0;
+        $(function () {
+            var container = $('#container');
+            var containerWidth = container.innerWidth();
+            var containerHeight = container.innerHeight();
+            var circuloWidth = 50;
+            var circuloHeight = 50;
+            var tiempo = 10;
+            var puntuacion = 0;
 
-        var intervalo = setInterval(function () {
-            var ancho = Math.random() * ((containerWidth) + circuloWidth);
-            var alto = Math.random() * ((containerHeight) + circuloHeight);
-            console.log(ancho);
-            console.log(alto);
-            if (ancho > containerWidth || alto > containerHeight) {
-                $('.circulo').css({
-                    'top': 0 + 'px',
-                    'left': 0 + 'px',
-                })
-            } else {
+            var intervalo = setInterval(function () {
+                var ancho = Math.random() * ((containerWidth) - circuloWidth);
+                var alto = Math.random() * ((containerHeight) - circuloHeight);
+
+                console.log(ancho);
+                console.log(alto);
+
+                if (ancho < 0) ancho = 0;
+                if (alto < 0) alto = 0;
+
                 $('.circulo').css({
                     'top': alto + 'px',
                     'left': ancho + 'px',
-                })
-            }
-            tiempo--;
-            $('.temporizador').text(tiempo + ' segundos');
 
-            if (tiempo <= 0) {
-                $('.temporizador').text('¡Tiempo agotado!');
-                clearInterval(intervalo);
-            }
+                });
 
-        }, 1000);
+                tiempo--;
 
-        $('div.circulo').on('click', function () {
-            puntuacion++;
-            $('.puntuacion').text('Puntuación: ' + puntuacion);
+                $('.temporizador').text(tiempo + ' segundos');
 
-        });
-    })
-</script>
+                if (tiempo <= 0) {
+                    $('.temporizador').text('¡Tiempo agotado!');
+                    clearInterval(intervalo);
+                }
+
+
+            }, 1000);
+
+            $('div.circulo').on('click', function () {
+                if (tiempo > 0) {
+                    puntuacion++;
+                    $('.puntuacion').text('Puntuación: ' + puntuacion);
+                }
+            });
+        })
+    </script>
+</body>
 
 </html>
