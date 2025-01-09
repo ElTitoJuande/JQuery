@@ -17,6 +17,7 @@
 
         ul,
         li {
+            cursor: pointer;
             list-style: none;
             font-weight: bold;
             text-transform: uppercase;
@@ -86,24 +87,43 @@
 <script>
     $(function () {
         $("li").on("click", function () {
-            if ($(this).text() == "Pestaña 1") {
-                $(this).parents().siblings().hide();
-                $(this).parents().siblings("section#sec1").show();
-                $(this).css("background", "rgba(105, 90, 205, 0.5)");
-                $(this).siblings().css("background","transparent");
-            }
-            if ($(this).text() == "Pestaña 2") {
-                $(this).parents().siblings().hide();
-                $(this).parents().siblings("section#sec2").show();
-                $(this).css("background", "rgba(105, 90, 205, 0.5)");
-                $(this).siblings().css("background","transparent");
-            }
-            if ($(this).text() == "Pestaña 3") {
-                $(this).parents().siblings().hide();
-                $(this).parents().siblings("section#sec3").show();
-                $(this).css("background", "rgba(105, 90, 205, 0.5)");
-                $(this).siblings().css("background","transparent");
-            }
+            var indice = $(this).index();
+            $('section').hide();
+            $('section').eq(indice).fadeIn();
+            $('li').css({
+                'background-color':'white',
+                'color':'black',
+            });
+            $(this).css({
+                'background-color':'slateblue',
+                'color':'white',
+                
+            });
+
+            // if ($(this).text() == "Pestaña 1") {
+            //     $(this).parents().siblings().hide();
+            //     $(this).parents().siblings("section#sec1").show();
+            //     $(this).css("background", "rgba(105, 90, 205, 0.5)");
+            //     $(this).siblings().css("background", "transparent");
+            //     $("#sec1").css("background-color", "rgba(105, 90, 205, 0.5)");
+            //     $(this).siblings().css("background-color", "transparent");
+            // }
+            // if ($(this).text() == "Pestaña 2") {
+            //     $(this).parents().siblings().hide();
+            //     $(this).parents().siblings("section#sec2").show();
+            //     $(this).css("background", "rgba(105, 90, 205, 0.5)");
+            //     $(this).siblings().css("background", "transparent");
+            //     $("#sec2").css("background-color", "rgba(105, 90, 205, 0.5)");
+            //     $(this).siblings().css("background-color", "transparent");
+            // }
+            // if ($(this).text() == "Pestaña 3") {
+            //     $(this).parents().siblings().hide();
+            //     $(this).parents().siblings("section#sec3").show();
+            //     $(this).css("background", "rgba(105, 90, 205, 0.5)");
+            //     $(this).siblings().css("background", "transparent");
+            //     $("#sec3").css("background-color", "rgba(105, 90, 205, 0.5)");
+            //     $(this).siblings().css("background-color", "transparent");
+            // }
 
         })
     });

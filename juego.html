@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            position: relative;
+            margin: 100px;
+            padding: 100px;
+            border: solid 1px black;
+            background-color: pink;
+            overflow: hidden;
+        }
+
+        .circulo {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: tomato;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="temporizador">10 segundos</h2>
+    <h2 class="puntuacion">Puntuación: <span>0</span></h2>
+    <div id="container">
+        <div class="circulo"></div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+    $(function () {
+        var container = $('#container');
+        var containerWidth = container.innerWidth();
+        var containerHeight = container.innerHeight();
+        var circuloWidth = 50;
+        var circuloHeight = 50;
+        var tiempo = 10;
+        var puntuacion = 0;
+
+        var intervalo = setInterval(function () {
+            var ancho = Math.random() * ((containerWidth) + circuloWidth);
+            var alto = Math.random() * ((containerHeight) + circuloHeight);
+            console.log(ancho);
+            console.log(alto);
+            if (ancho > containerWidth || alto > containerHeight) {
+                $('.circulo').css({
+                    'top': 0 + 'px',
+                    'left': 0 + 'px',
+                })
+            } else {
+                $('.circulo').css({
+                    'top': alto + 'px',
+                    'left': ancho + 'px',
+                })
+            }
+            tiempo--;
+            $('.temporizador').text(tiempo + ' segundos');
+
+            if (tiempo <= 0) {
+                $('.temporizador').text('¡Tiempo agotado!');
+                clearInterval(intervalo);
+            }
+
+        }, 1000);
+
+        $('div.circulo').on('click', function () {
+            puntuacion++;
+            $('.puntuacion').text('Puntuación: ' + puntuacion);
+
+        });
+    })
+</script>
+
+</html>
